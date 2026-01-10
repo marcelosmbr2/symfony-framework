@@ -1,0 +1,25 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+fos_ck_editor:
+    default_config: default
+    configs:
+        default:
+            toolbar: full
+            language: pt
+            height: 500
+
+            removePlugins: 'exportpdf'
+            extraPlugins: 'uploadimage,image2,colorbutton,font,justify,table,tableresize'
+
+            allowedContent: true
+
+            filebrowserUploadRoute: app_ckeditor_upload
+
+            format_tags: 'p;h1;h2;h3;h4;h5;h6;pre;address;div'
+            entities: false
+
+            enterMode: 2
+            shiftEnterMode: 1

@@ -25,10 +25,22 @@ class Article
     #[Assert\Length(min: 3, max: 255, minMessage: 'Name too short.', maxMessage: 'Name too long.')]
     private ?string $name = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\Length(max: 5000, maxMessage: 'Description too long.')]
+    private ?string $description = null;
+
+    // NOVO: Campo content para o editor rico
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $content = null;
+
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Category required.')]
     #[Assert\Length(max: 255, maxMessage: 'Category too long.')]
     private ?string $category = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 255, maxMessage: 'Thumbnail path too long.')]
+    private ?string $thumbnail = null;
 
     #[ORM\Column]
     #[Assert\Type(type: 'bool')]
@@ -58,7 +70,29 @@ class Article
     public function setName(string $name): static
     {
         $this->name = $name;
+        return $this;
+    }
 
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    // NOVO: Getters e Setters para content
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): static
+    {
+        $this->content = $content;
         return $this;
     }
 
@@ -70,7 +104,17 @@ class Article
     public function setCategory(string $category): static
     {
         $this->category = $category;
+        return $this;
+    }
 
+    public function getThumbnail(): ?string
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?string $thumbnail): static
+    {
+        $this->thumbnail = $thumbnail;
         return $this;
     }
 
@@ -82,7 +126,6 @@ class Article
     public function setIsPublished(bool $isPublished): static
     {
         $this->isPublished = $isPublished;
-
         return $this;
     }
 
@@ -94,7 +137,6 @@ class Article
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -106,7 +148,6 @@ class Article
     public function setUpdatedAt(\DateTimeInterface $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 
@@ -131,7 +172,6 @@ class Article
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
-
         return $this;
     }
 }

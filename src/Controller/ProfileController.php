@@ -16,7 +16,7 @@ final class ProfileController extends AbstractController
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
-        return $this->render('profile/index.html.twig', [
+        return $this->render('home/profile/index.html.twig', [
             'user' => $user,
         ]);
     }
