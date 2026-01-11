@@ -27,13 +27,30 @@ class ArticleRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findByIdWithAuthor(Ulid $id): ?Article
+    public function findAll(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findOneById(string $id): ?Article
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.id = :id')
+            ->setParameter('id', Ulid::fromString($id), 'ulid')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findByIdWithAuthor(string $id): ?Article
     {
         return $this->createQueryBuilder('a')
             ->leftJoin('a.author', 'u')
             ->addSelect('u')
             ->where('a.id = :id')
-            ->setParameter('id', $id)
+            ->setParameter('id', Ulid::fromString($id), 'ulid')
             ->getQuery()
             ->getOneOrNullResult();
     }

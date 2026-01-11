@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\Uid\Ulid;
 
 #[Route('/article')]
 #[IsGranted('ROLE_USER')]
@@ -20,8 +21,10 @@ final class ArticleController extends AbstractController
     #[Route(name: 'app_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
+        $articles = $articleRepository->findAll();
+
         return $this->render('home/article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
         ]);
     }
 
@@ -65,8 +68,10 @@ final class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(Ulid $id, ArticleRepository $articleRepository): Response
     {
+        $article = $articleRepository->findByIdWithAuthor($id);
+
         return $this->render('home/article/show.html.twig', [
             'article' => $article,
         ]);
