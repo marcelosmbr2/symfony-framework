@@ -7,24 +7,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_USER')]
-final class ProfileController extends AbstractController
+class DashboardController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
-    public function index(): Response
+    #[Route('/dashboard', name: 'app_dashboard')]
+    #[IsGranted('ROLE_USER')]
+    public function dashboard(): Response
     {
-        /** @var \App\Entity\User $user */
         $user = $this->getUser();
-
+        
+        $userRole = 'user'; 
+        
         if ($this->isGranted('ROLE_ADMIN')) {
             $userRole = 'admin';
         } elseif ($this->isGranted('ROLE_MANAGER')) {
             $userRole = 'manager';
         }
-
-        return $this->render('home/profile/index.html.twig', [
+        
+        return $this->render('home/dashboard/index.html.twig', [
             'user' => $user,
-            'userRole' => $userRole
+            'userRole' => $userRole,
         ]);
     }
 }

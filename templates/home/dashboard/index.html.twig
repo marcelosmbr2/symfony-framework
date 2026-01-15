@@ -1,0 +1,12 @@
+{% extends 'home/home_layout.html.twig' %}
+
+{% block page_title %}Meu Dashboard Inicial{% endblock %}
+
+{% block content %}
+    {# Aqui você coloca a lógica de inclusão que estava no arquivo original #}
+    {% if userRole == 'admin' %}
+        {% include 'home/dashboard/_admin_content.html.twig' %}
+    {% elseif userRole == 'user' %}
+        {% include 'home/dashboard/_user_content.html.twig' %}
+    {% endif %}
+{% endblock %}

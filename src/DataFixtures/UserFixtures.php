@@ -20,8 +20,8 @@ class UserFixtures extends Fixture
     {
         $admin = new User();
         $admin->setEmail('admin@app.com');
-        $admin->setUsername('admin');
         $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setIsVerified(true);
         $admin->setPassword(
             $this->passwordHasher->hashPassword($admin, 'admin123')
         );
@@ -30,10 +30,11 @@ class UserFixtures extends Fixture
         $manager->persist($admin);
 
         // Criar usuários de exemplo
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 2; $i++) {
             $user = new User();
             $user->setEmail("user{$i}@app.com");
-            $user->setUsername("user{$i}");
+            $user->setRoles(['ROLE_USER']);
+            $user->setIsVerified(true);
             $user->setPassword(
                 $this->passwordHasher->hashPassword($user, 'user123')
             );

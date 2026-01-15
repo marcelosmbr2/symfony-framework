@@ -1,0 +1,46 @@
+<h2 class="text-2xl font-bold text-heading mb-6">👤 User Dashboard</h2>
+
+<div class="grid grid-cols-3 gap-4 mb-4">
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-green-100 border border-green-300">
+      <p class="text-3xl font-bold text-green-600">5</p>
+      <p class="text-sm text-green-800">My Tasks</p>
+   </div>
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-blue-100 border border-blue-300">
+      <p class="text-3xl font-bold text-blue-600">3</p>
+      <p class="text-sm text-blue-800">Notifications</p>
+   </div>
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-purple-100 border border-purple-300">
+      <p class="text-3xl font-bold text-purple-600">85%</p>
+      <p class="text-sm text-purple-800">Profile Complete</p>
+   </div>
+</div>
+
+<div class="flex items-center justify-center h-48 rounded-base bg-neutral-secondary-soft mb-4 border-2 border-dashed border-gray-300">
+   <div class="text-center">
+      <svg class="w-12 h-12 mx-auto text-gray-400 mb-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/>
+      </svg>
+      <p class="text-fg-disabled">Your Activity Overview</p>
+   </div>
+</div>
+
+<div class="grid grid-cols-2 gap-4">
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-yellow-100 border border-yellow-300">
+      <p class="text-2xl font-bold text-yellow-600">Welcome!</p>
+      <p class="text-sm text-yellow-800">{{ user.email }}</p>
+   </div>
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-teal-100 border border-teal-300">
+      <p class="text-2xl font-bold text-teal-600">
+        {% if user.isVerified %}✓{% else %}✗{% endif %}
+      </p>
+      <p class="text-sm text-teal-800">Email Verified</p>
+   </div>
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-indigo-100 border border-indigo-300">
+      <p class="text-2xl font-bold text-indigo-600">0</p>
+      <p class="text-sm text-indigo-800">Messages</p>
+   </div>
+   <div class="flex flex-col items-center justify-center h-24 rounded-base bg-pink-100 border border-pink-300">
+      <p class="text-2xl font-bold text-pink-600">New</p>
+      <p class="text-sm text-pink-800">Account Status</p>
+   </div>
+</div>

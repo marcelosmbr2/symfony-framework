@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Uid\Ulid;
+use Psr\Log\LoggerInterface;
 
 #[Route('/article')]
 #[IsGranted('ROLE_USER')]
